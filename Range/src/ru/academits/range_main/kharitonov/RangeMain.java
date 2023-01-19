@@ -14,9 +14,9 @@ public class RangeMain {
 
         System.out.println("Длина диапазона равна " + range.getLength());
 
-        boolean isInNumbersRange = range.isInside(15.5);
+        boolean isNumberInRange = range.isInside(15.5);
 
-        if (isInNumbersRange) {
+        if (isNumberInRange) {
             System.out.println("Число входит в диапазон!");
         } else {
             System.out.println("Число не входит в диапазон!");
@@ -32,9 +32,9 @@ public class RangeMain {
 
         System.out.println("Длина диапазона равна " + range.getLength());
 
-        isInNumbersRange = range.isInside(10.5);
+        isNumberInRange = range.isInside(10.5);
 
-        if (isInNumbersRange) {
+        if (isNumberInRange) {
             System.out.println("Число входит в диапазон!");
         } else {
             System.out.println("Число не входит в диапазон!");
