@@ -2,6 +2,8 @@ package ru.academits.range_main.kharitonov;
 
 import ru.academits.range.kharitonov.Range;
 
+import java.util.Arrays;
+
 public class RangeMain {
     public static void main(String[] args) {
         Range range = new Range(10.5, 25.5);
@@ -39,5 +41,16 @@ public class RangeMain {
         } else {
             System.out.println("Число не входит в диапазон!");
         }
+
+        Range range1 = new Range(30, 45);
+
+        if(range.intersectionRange(range1) == null){
+            System.out.println("Нет пересечений интервалов!");
+        }else{
+            System.out.println("Интервал пересечения " + range.intersectionRange(range1));
+        }
+
+        System.out.println("Интервал объединения " + Arrays.toString(range.associationsRange(range1)));
+        System.out.println("Интервал разности " + Arrays.toString(range.differenceRange(range1)));
     }
 }
