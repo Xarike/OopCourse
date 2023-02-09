@@ -1,6 +1,6 @@
 package ru.academits.range_main.kharitonov;
 
-import ru.academits.range.kharitonov.Range;
+import ru.academits.range_kharitonov.Range;
 
 import java.util.Arrays;
 

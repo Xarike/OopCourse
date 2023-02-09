@@ -1,4 +1,4 @@
-package ru.academits.range.kharitonov;
+package ru.academits.range_kharitonov;
 
 public class Range {
     private double from;
@@ -45,7 +45,7 @@ public class Range {
         return null;
     }
 
-    @Override
+       @Override
     public String toString() {
         return "from = " + from + ", " + "to = " + to;
     }
