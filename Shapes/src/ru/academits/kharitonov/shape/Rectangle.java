@@ -28,4 +28,32 @@ public class Rectangle implements Shape {
     public double getPerimeter() {
         return (width + height) * 2;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Площадь = %.1f, Периметр = %.1f", getArea(), getPerimeter());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Rectangle rectangle = (Rectangle) o;
+        return width == rectangle.width && height == rectangle.height;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 37;
+        int hash = 1;
+        hash = prime * hash + Double.hashCode(width);
+        hash = prime * hash + Double.hashCode(height);
+        return hash;
+    }
 }
