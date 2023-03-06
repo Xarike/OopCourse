@@ -50,7 +50,7 @@ public class RangeMain {
             System.out.println("Интервал пересечения " + range1.getIntersection(range2));
         }
 
-        System.out.println("Интервал объединения " +Arrays.toString(range1.getUnion(range2)));
+        System.out.println("Интервал объединения " + Arrays.toString(range1.getUnion(range2)));
         System.out.println("Интервал разности " + Arrays.toString(range1.getDifference(range2)));
     }
 }
