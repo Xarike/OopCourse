@@ -18,7 +18,9 @@ public class ListMain {
         System.out.println("Получение узла по индексу : " + list.getItemByIndex(5));
         System.out.println("Изменение по индексу : " + list.setByIndex(4,22));
         System.out.println("Получение элемента по индексу : " + list.getByIndex(4));
+
         list.insertByIndex(17,3);
+
         System.out.println("Список после вставки узла : " + list);
         System.out.println("Удаление по индексу : " + list.removeByIndex(0));
         System.out.println("Список после удаления по индексу : " + list);
@@ -30,7 +32,9 @@ public class ListMain {
         }
 
         System.out.println("Список после удаления узла по элементу : " + list);
+
         list.revers();
+
         System.out.println("Список после разворота : " + list);
 
         System.out.println("Список после копирования : " + list.copy());
