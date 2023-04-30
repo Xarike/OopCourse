@@ -1,13 +1,25 @@
 package ru.academits.kharitonov.arrayList;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class ArrayList<E> implements List<E> {
-    private E date;
+    private E[] values;
     private int size;
+    private int modCount;
+
+     private static final int DEFAULT_CAPACITY = 10;
+
+    public  ArrayList(){
+        values = (E[]) new Object[DEFAULT_CAPACITY];
+     }
+
+     public ArrayList(int size){
+         if(size < 0) {
+             throw new NegativeArraySizeException("You entered size = " + size + ". But size must be >= 0.");
+         }
+
+         values = (E[]) new Object[size];
+     }
 
     @Override
     public int size() {
@@ -21,12 +33,42 @@ public class ArrayList<E> implements List<E> {
 
     @Override
     public boolean contains(Object o) {
+        for (int i = 0; i < size; i++) {
+            if(o.equals(values[i])){
+                return true;
+            }
+        }
+
         return false;
     }
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new  MyIterator();
+    }
+
+    private class MyIterator implements Iterator<E>{
+        private int currentIndex = -1;
+        private final int modCountStart = modCount;
+
+        @Override
+        public boolean hasNext() {
+           return currentIndex + 1 < size;
+        }
+
+        @Override
+        public E next() {
+            if(!hasNext()) {
+                throw new NoSuchElementException("The collection is over.");
+            }
+
+            if(modCount != modCountStart){
+                throw  new ConcurrentModificationException("The collection has changed.");
+            }
+
+            ++currentIndex;
+            return values[currentIndex];
+        }
     }
 
     @Override
@@ -40,8 +82,9 @@ public class ArrayList<E> implements List<E> {
     }
 
     @Override
-    public boolean add(E t) {
-        return false;
+    public boolean add(E element) {
+        add(size, element);
+        return true;
     }
 
     @Override
@@ -91,7 +134,18 @@ public class ArrayList<E> implements List<E> {
 
     @Override
     public void add(int index, E element) {
+        if(index < 0 || index > size){
+            throw new IndexOutOfBoundsException("Index = " + index + ". But index must be >= 0 and <= " + size);
+        }
 
+        if(size >= values.length){
+            ensureCapacity();
+        }
+
+        System.arraycopy(values, index, values, index + 1, size - index);
+        values[index] = element;
+        size++;
+        modCount++;
     }
 
     @Override
@@ -107,6 +161,34 @@ public class ArrayList<E> implements List<E> {
     @Override
     public int lastIndexOf(Object o) {
         return 0;
+    }
+    @Override
+    public String toString(){
+        if (isEmpty()) {
+            return "[ ]";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+
+        for (int i = 0; i < size; i++) {
+            sb.append(values[i]);
+            sb.append(", ");
+        }
+
+        sb.delete(sb.length() - 2, sb.length());
+        sb.append("]");
+
+        return sb.toString();
+    }
+
+    private void ensureCapacity(){
+        if(values.length == 0 ){
+            values = (E[]) new Object[DEFAULT_CAPACITY];
+            return;
+        }
+
+        values = Arrays.copyOf(values, values.length * 2);
     }
 
 
